@@ -7,6 +7,6 @@ pub mod state;
 #[cfg(not(feature = "no-entrypoint"))]
 pub mod entrypoint;
 
-type Result<T> = core::result::Result<T, Box<dyn std::error::Error>>;
+pub type Result<T> = core::result::Result<T, Box<dyn std::error::Error>>;
 
 solana_program::declare_id!("Fuzt4q4ErrMJ4bfcsZPnpeorTFyKa8afVTtK6QobpDAb");

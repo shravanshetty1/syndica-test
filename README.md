@@ -1,7 +1,16 @@
 # Syndica-test
 Create a smart contract such that the program state can only be modified by the 2 authorized users. Most instruction validation has been skipped since this is only for demonstration purposes.
 
-### Usage
+
+
+### Test
+You dont need to run a validator to run the tests
+```
+cargo test -- --nocapture
+```
+
+
+### Local setup
 Run a solana validator in a seperate terminal
 ```
 solana-test-validator
@@ -13,10 +22,4 @@ cargo build-sbf
 solana program deploy ./target/deploy/syndica_test.so
 ```
 
-
-### Test
-Replace the program id with the program id in your local machine
-```
-PROGRAM_ID=6jX27af1HDJjANdozTxNrwApdXzGVw3igjeYPdwXLagD cargo test -- --nocapture
-```
 

@@ -17,19 +17,19 @@ pub struct InstantiateArgs {
 }
 
 #[derive(Debug)]
-struct InstantiateAccounts<'a> {
-    program_state: &'a AccountInfo<'a>,
+struct InstantiateAccounts<'a,'b> {
+    program_state: &'a AccountInfo<'b>,
 }
 
-pub struct Instantiate<'a> {
+pub struct Instantiate<'a,'b> {
     program_id: Pubkey,
-    accounts: InstantiateAccounts<'a>,
+    accounts: InstantiateAccounts<'a,'b>,
     args: InstantiateArgs,
 }
-impl<'a> Instantiate<'a> {
+impl<'a,'b> Instantiate<'a,'b> {
     pub fn new(
         program_id: Pubkey,
-        accounts: &'a [AccountInfo<'a>],
+        accounts: &'a [AccountInfo<'b>],
         args: InstantiateArgs,
     ) -> Result<Self, ProgramError> {
         let accounts = &mut accounts.iter();
@@ -44,7 +44,7 @@ impl<'a> Instantiate<'a> {
     }
 }
 
-impl Instruction for Instantiate<'_> {
+impl<'a,'b> Instruction for Instantiate<'a,'b> {
     fn validate(&self) -> solana_program::entrypoint::ProgramResult {
         self.validate_instruction()
     }

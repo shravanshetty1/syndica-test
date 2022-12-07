@@ -7,7 +7,7 @@ use super::ChangeState;
 
 // create pda and set initial program state
 
-impl ChangeState<'_> {
+impl<'a,'b> ChangeState<'a,'b> {
     pub fn execute_instruction(&self) -> ProgramResult {
         let mut program_state =
             ProgramState::deserialize(&mut &**self.accounts.program_state.data.borrow())?;

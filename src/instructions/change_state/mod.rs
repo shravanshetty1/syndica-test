@@ -16,20 +16,20 @@ pub struct ChangeStateArgs {
 }
 
 #[derive(Debug)]
-struct ChangeStateAccounts<'a> {
-    program_state: &'a AccountInfo<'a>,
-    signer: &'a AccountInfo<'a>,
+struct ChangeStateAccounts<'a, 'b> {
+    program_state: &'a AccountInfo<'b>,
+    signer: &'a AccountInfo<'b>,
 }
 
-pub struct ChangeState<'a> {
+pub struct ChangeState<'a, 'b> {
     program_id: Pubkey,
-    accounts: ChangeStateAccounts<'a>,
+    accounts: ChangeStateAccounts<'a, 'b>,
     args: ChangeStateArgs,
 }
-impl<'a> ChangeState<'a> {
+impl<'a, 'b> ChangeState<'a, 'b> {
     pub fn new(
         program_id: Pubkey,
-        accounts: &'a [AccountInfo<'a>],
+        accounts: &'a [AccountInfo<'b>],
         args: ChangeStateArgs,
     ) -> Result<Self, ProgramError> {
         let accounts = &mut accounts.iter();
@@ -48,7 +48,7 @@ impl<'a> ChangeState<'a> {
     }
 }
 
-impl Instruction for ChangeState<'_> {
+impl<'a, 'b> Instruction for ChangeState<'a, 'b> {
     fn validate(&self) -> solana_program::entrypoint::ProgramResult {
         self.validate_instruction()
     }

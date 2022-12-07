@@ -8,9 +8,9 @@ use crate::instructions::{
 };
 
 entrypoint!(process_instruction);
-fn process_instruction<'a>(
+pub fn process_instruction(
     program_id: &Pubkey,
-    accounts: &'a [AccountInfo<'a>],
+    accounts: &[AccountInfo],
     args: &[u8],
 ) -> ProgramResult {
     msg!("creating instruction object!");

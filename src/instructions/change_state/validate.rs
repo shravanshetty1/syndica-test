@@ -5,7 +5,7 @@ use crate::state::ProgramState;
 
 use super::ChangeState;
 
-impl ChangeState<'_> {
+impl<'a, 'b> ChangeState<'a, 'b> {
     pub fn validate_instruction(&self) -> ProgramResult {
         if !self.accounts.signer.is_signer {
             solana_program::msg!("signer account has not signed the transaction");

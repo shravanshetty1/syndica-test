@@ -7,7 +7,7 @@ use super::Instantiate;
 
 // create pda and set initial program state
 
-impl Instantiate<'_> {
+impl<'a,'b> Instantiate<'a,'b> {
     pub fn execute_instruction(&self) -> ProgramResult {
         let program_state =  ProgramState {
             state: 0,
